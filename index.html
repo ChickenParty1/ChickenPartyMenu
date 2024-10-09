@@ -117,6 +117,32 @@ button.prev:hover, button.next:hover {
     font-size: 24px;
     cursor: pointer;
 }
+
+
+/* تنسيق التوست */
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 30px;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* ظهور التوست */
+#toast.show {
+    visibility: visible;
+    opacity: 1;
+}
 </style>
 </head>
 <body class="light-mode">
@@ -151,6 +177,9 @@ button.prev:hover, button.next:hover {
 
     <!-- <div class style="margin-left: auto;" onclick="toggleMode()">🌙</div> -->
 </div>
+
+<!-- Toast message -->
+<div id="toast">Welcome to Chicken Party!<br>نأمل أن تستمتع بوقتك معنا!</div>
 
 <script>
 let currentIndex = 0;
@@ -187,6 +216,15 @@ function toggleMode() {
     
     body.classList.toggle('dark-mode');
     header.classList.toggle('light-mode');
+}
+
+// دالة لإظهار التوست واختفائه بعد ثانيتين
+window.onload = function() {
+    var toast = document.getElementById("toast");
+    toast.className = "show";
+    setTimeout(function(){
+        toast.className = toast.className.replace("show", "");
+    }, 5000); // إخفاء التوست بعد 5 ثانية
 }
 </script>
 
